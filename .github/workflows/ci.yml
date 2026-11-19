@@ -1,0 +1,11 @@
+name: ci
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: ['release/**', 'hotfix/**']
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "event=${{ github.event_name }} actor=${{ github.actor }} sha=${{ github.sha }}"

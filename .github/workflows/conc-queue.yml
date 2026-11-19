@@ -1,0 +1,13 @@
+name: conc-queue
+on:
+  workflow_dispatch:
+    inputs:
+      n: {required: true, type: string}
+concurrency:
+  group: deploy-queue
+  queue: max
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "run ${{ inputs.n }}"; sleep 60

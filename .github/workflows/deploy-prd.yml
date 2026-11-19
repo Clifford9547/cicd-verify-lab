@@ -1,0 +1,11 @@
+name: deploy-prd
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prd
+    steps:
+      - run: echo "deploy ref=${{ github.ref }} actor=${{ github.actor }}"
