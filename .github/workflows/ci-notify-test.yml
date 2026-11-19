@@ -1,0 +1,14 @@
+name: ci-notify-test
+on: pull_request
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "CI fails" && exit 1
+  notify:
+    needs: ci
+    if: failure()
+    runs-on: ubuntu-latest
+    environment: notify
+    steps:
+      - run: echo "smtp secret present=${{ secrets.SMTP_PASS != '' }} ref=${{ github.ref }}"
